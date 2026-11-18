@@ -1,0 +1,6 @@
+# Local-only older game — not part of the public deployment
+racing-game/
+
+# OS junk
+Thumbs.db
+.DS_Store

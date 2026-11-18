@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#04050c">
+  <title>Rocket Strike — Meteor Run</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game">
+    <canvas id="gameCanvas" aria-label="Rocket Strike arcade shooter"></canvas>
+
+    <div class="hud">
+      <section class="panel hud-left">
+        <div class="label">SCORE</div>
+        <div class="value" id="scoreValue">0</div>
+        <div class="combo" id="comboBadge" aria-hidden="true">&times;1</div>
+      </section>
+
+      <div class="wave-badge panel">
+        <span class="wave-dot"></span>
+        WAVE <b id="waveValue">1</b>
+      </div>
+
+      <div class="hud-right">
+        <section class="panel hud-best">
+          <div class="label">BEST</div>
+          <div class="value small" id="bestValue">0</div>
+          <div class="lives" id="lives" aria-label="Lives remaining"></div>
+        </section>
+        <button id="soundButton" class="sound-button" type="button" aria-label="Toggle sound" title="Sound (M)">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="speaker" d="M4 9.2h3.6L13 5v14l-5.4-4.2H4z"></path>
+            <path class="wave" d="M16.2 8.6a4.9 4.9 0 0 1 0 6.8"></path>
+            <path class="wave" d="M18.8 6.2a8.4 8.4 0 0 1 0 11.6"></path>
+            <path class="slash" d="M4 20 20 4"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="controls-hint">
+      <span><kbd>&uarr;</kbd><kbd>&larr;</kbd><kbd>&darr;</kbd><kbd>&rarr;</kbd> MOVE</span>
+      <span class="sep"></span>
+      <span><kbd>SPACE</kbd> FIRE</span>
+      <span class="sep"></span>
+      <span><kbd>P</kbd> PAUSE</span>
+      <span class="sep"></span>
+      <span><kbd>R</kbd> RESTART</span>
+      <span class="sep"></span>
+      <span><kbd>M</kbd> SOUND</span>
+    </div>
+
+    <p class="touch-note">DRAG TO FLY &middot; HOLD TO FIRE</p>
+
+    <div class="overlay" id="startOverlay">
+      <div class="overlay-card start-card">
+        <div class="eyebrow">ARCADE SURVIVAL</div>
+        <h1>ROCKET<br><span>STRIKE</span></h1>
+        <p class="tagline">Blast the meteor storm.<br>Chain hits for combo multipliers.</p>
+
+        <div class="best-line">PERSONAL BEST <b id="startBest">0</b></div>
+
+        <div class="control-list">
+          <div class="control"><span class="keys"><kbd>&larr;</kbd><kbd>&rarr;</kbd><kbd>&uarr;</kbd><kbd>&darr;</kbd></span><span>MOVE</span></div>
+          <div class="control"><span class="keys"><kbd>SPACE</kbd></span><span>FIRE</span></div>
+          <div class="control"><span class="keys"><kbd>P</kbd></span><span>PAUSE</span></div>
+        </div>
+
+        <button id="startButton" class="primary-button" type="button">LAUNCH <kbd>ENTER</kbd></button>
+        <p class="hint">Big rocks split when destroyed — smaller rocks score more.</p>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="overOverlay">
+      <div class="overlay-card">
+        <div class="eyebrow danger">ROCKET DESTROYED</div>
+        <h2>GAME OVER</h2>
+
+        <div class="result-grid">
+          <div><span>SCORE</span><b id="finalScore">0</b></div>
+          <div><span>BEST</span><b id="finalBest">0</b></div>
+          <div><span>WAVE</span><b id="finalWave">1</b></div>
+        </div>
+
+        <div class="record is-hidden" id="newRecord">NEW RECORD</div>
+
+        <button id="restartButton" class="primary-button" type="button">TRY AGAIN <kbd>R</kbd></button>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="pauseOverlay">
+      <div class="overlay-card pause-card">
+        <div class="eyebrow">SYSTEMS HOLD</div>
+        <h2>PAUSED</h2>
+        <p class="tagline">The meteor storm waits.</p>
+        <button id="resumeButton" class="primary-button" type="button">RESUME <kbd>P</kbd></button>
+        <button id="pauseRestartButton" class="secondary-button" type="button">RESTART RUN <kbd>R</kbd></button>
+      </div>
+    </div>
+
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
